@@ -1,0 +1,110 @@
+Download Pavel Demin's SD-card image zip-file for your Red Pitaya (125-14 or 122.88-16)
+and uncompress it into a folder. They can be found at:
+
+https://pavel-demin.github.io/stemlab-sdr-notes/sdr-transceiver-ft8/
+https://pavel-demin.github.io/red-pitaya-notes/sdr-transceiver-ft8/
+
+Copy the content of the folder to a clean FAT32-formatted SD card.
+
+If you are not absolutely sure of what you are doing, do not modify the files on the SD card.
+Should you do it, make sure you use tools that do not enforce Windows/DOS file properties.
+E.g. notepad++ is safe to use. 
+
+SSH to the Red Pitaya. Default user name is "root", default password is "changeme".
+
+Semioptionally - change the password to something more secure
+
+# passwd
+
+Optionally - modify the welcome message to include the identity of the Red Pitaya (e.g. "my FT8 skimmer").
+
+# nano /etc/motd
+
+Install perl
+
+# rw
+# apk update
+# apk add perl
+
+Go to the application folder and rename the default decode script
+
+# cd apps/sdr_transceiver_ft8
+# mv decode-ft8.sh decode-ft8.sh.old
+
+Using a e.g. WinSCP, copy the file temp.sh to /root.
+
+Make sure it is executable and check the chip core temperature of your device
+
+# chmod +x temp.sh
+# ./temp.sh
+
+Using a e.g. WinSCP, copy the following files to /root/apps/sdr_transceiver_ft8:
+
+radioday
+decode-ft8.sh
+upload-to-rbn.pl
+write-c2-files-day.cfg
+write-c2-files-night.cfg
+write-c2-files-gray.cfg
+
+Make sure the script is executable
+
+# cd apps/sdr_transceiver_ft8
+# chmod +x decode-ft8.sh
+
+Enter your call sign, grid, the host ip and selected port for the computer runnning 
+RBN Aggregator in decode-ft8.sh. My empirical studies suggest 2h is a good number for 
+the twilight duration. Should you live close to the equator you may want to use a 
+shorter number. Setting it to zero disables the use of write-c2-files-gray.cfg.
+
+# nano decode-ft8.sh
+
+Enter your call sign, grid and optional antenna information in upload-ft8.sh.
+This script controls pskreporter.info uploads and only executes every six to 
+seven minutes.
+
+# nano upload-ft8.sh
+
+Enter your device'scalibration factor in ppm and optionally modify the band 
+selections in the three configuration files for the receiver. If you do not know 
+your calibration factor, leave it at 0.0. Should you modify it, make sure to 
+include the decimal point. You may also want to modify the band selection for 
+the three time segments. This is done by commenting/uncommenting the corresponding 
+lines. If you do this, be careful to get the commas right. More information on 
+calibration can be found on the calibration page. 
+
+# nano write-c2-files-day.cfg
+# nano write-c2-files-night.cfg
+# nano write-c2-files-gray.cfg
+
+copy start.sh to /media/mmcblk0p1
+
+# cp start.sh /media/mmcblk0p1
+
+Make everything stick
+
+# lbu commit -d
+
+Start
+
+# reboot
+
+Wait for the orange LED to stop blinking, then SSH to 
+the RP and check that we are in business
+
+# cd /dev/shm
+
+Wait until the log file appears
+
+# ls
+
+Then follow it for as long as you like
+
+# tail -f decode-ft8.log
+
+when you are done, hit ctrl-C and log off
+
+# exit
+
+Should you want to understand/modify/build the radioday utility, you may find it on
+https://github.com/bjornekelund/radioday
