@@ -54,14 +54,14 @@ if(! defined($ARGV[3]) || (! ($ARGV[3] =~ /^\d{2,5}$/)) ) {
 my $peerport = $ARGV[3];
 
 # WSJT-X UDP header
-my $header = "ad bc cb da 00 00 00 00 ";
+my $header = "ad bc cb da 00 00 00 02 ";
 $header = join("", split(" ", $header));
 
 # Message descriptors
 
 my $msg1 = join("", split(" ", "00 00 00 01")); # Status datagram
 my $msg2 = join("", split(" ","00 00 00 02")); # Decode datagram
-my $maxschema = join("", split(" ", "00 00 00 03")); # Maxschema
+#my $maxschema = join("", split(" ", "00 00 00 03")); # Maxschema
 
 # FT8 decoder log fields
 my $msg;
