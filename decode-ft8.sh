@@ -1,10 +1,9 @@
 #! /bin/sh
 
 # Station parameters
-CALL=SM7IUN
 GRID=JO65MR
-HOSTIP=192.168.1.9
-UDPPORT=2237
+BROADCASTIP=192.168.1.255
+UDPPORT=2238
 GRAYDURATION=2
 # End of station parameters
 
@@ -22,7 +21,7 @@ SCONFIG=write-c2-files-`$DIR/radioday $GRID $GRAYDURATION`.cfg
 DECODER=$DIR/ft8d-master/ft8d
 SLEEP=$DIR/sleep-to-59
 
-date
+#date
 
 test $DIR/$CONFIGD -ot $CONFIGD || cp $DIR/$CONFIGD $CONFIGD
 test $DIR/$CONFIGN -ot $CONFIGN || cp $DIR/$CONFIGN $CONFIGN
@@ -38,7 +37,7 @@ date
 
 TIMESTAMP=`date --utc +'%y%m%d_%H%M'`
 
-echo "Recording using file $SCONFIG ..."
+echo "Recording using $SCONFIG ..."
 
 killall -q $RECORDER
 
@@ -57,7 +56,11 @@ done > decodes_$TIMESTAMP.txt
 
 wait
 
+date
+
 echo "Done decoding. Uploading to RBN ..."
-$DIR/upload-to-rbn.pl $CALL $GRID $HOSTIP $UDPPORT
+#$DIR/upload-to-rbn.pl $CALL $GRID $HOSTIP $UDPPORT
+
+$DIR/upload-to-rbn $BROADCASTIP $UDPPORT decodes_$TIMESTAMP.txt
 
 rm -f ft8_*_$TIMESTAMP.c2
