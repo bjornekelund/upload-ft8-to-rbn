@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # Station parameters
-GRID=JO65MR
+GRID=
 BROADCASTIP=192.168.1.255
 UDPPORT=2238
 GRAYDURATION=2

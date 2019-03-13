@@ -7,14 +7,14 @@ https://pavel-demin.github.io/red-pitaya-notes/sdr-transceiver-ft8/
 Copy the content of the folder to a clean FAT32-formatted SD card.
 Do not follow any other instructions on the web page.
 
-
 SSH to the Red Pitaya. Default user name is "root", default password is "changeme".
 
 Semioptionally - change the password to something more secure
 
 # passwd
 
-Optionally - modify the welcome message to include the identity of the Red Pitaya (e.g. "my FT8 skimmer").
+Optionally - modify the welcome message to include the identity of 
+the Red Pitaya (e.g. "my FT8 skimmer").
 
 # nano /etc/motd
 
@@ -33,18 +33,23 @@ Install the utilities for config cycling and RBN upload
 
 # ./install.sh
 
-Configure your skimmer. Add grid, call, antenna information etc. as required. 
-Enter your device's calibration factor in ppm (with one decimal and a decimal point!)
-and optionally modify the band selections in the three configuration files 
-for the receiver. If you do not know your calibration factor, leave it at 0.0. 
-Should you modify it, make sure to include the decimal point. You may also want 
-to modify the band selection for the three time segments. This is done by 
-commenting/uncommenting the corresponding lines. If you do this, be careful 
-to get the commas right. More information on calibration can be found on the 
-RBN Calibration page of my web site. If you change the band configurations for 
-daylight/night/twilight be very careful to get the commas right. Also make sure 
-the calibration factor contains a decimal point. Exit the editor for each of 
-the five files with Ctrl-S Ctrl-X. Run the script to the end. Do not exit with Ctrl-C. 
+Configure your skimmer. Add grid, call, antenna information (for pskreporter), 
+broadcast IP address, IP port, etc. as required. The broadcast IP address is 
+typically the IP address of your router/DHCP server with the last number replaced 
+by 255, such as 192.168.1.255. 
+For twilight duration, empirical studies suggest two hours is a good number. 
+Should you live close to the equator you may want to use a shorter number, 
+such as 1.5. Setting it to zero disables the use of the twilight configuration 
+file write-c2-files-gray.cfg. 
+Enter your device's calibration factor in ppm (with one decimal and a decimal 
+point!) in each of the three configuration files. If you do not know your 
+calibration factor, leave it at 0.0. More information on calibration can be 
+found on the calibration page of my website. 
+You may also want to modify the band selection for the three daylight segments. 
+This is done by commenting/uncommenting the corresponding lines. If you do this, 
+make sure you activate exactly eight bands and also keep an eye on the commas 
+for correct syntax. Exit the editor for each of the five files with Ctrl-S Ctrl-X. 
+Run the script to the end. Do not exit with Ctrl-C. 
 
 # ./config.sh
 
