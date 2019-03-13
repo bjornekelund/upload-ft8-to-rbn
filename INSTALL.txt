@@ -1,3 +1,6 @@
+Before you start ensure that you have a working installation of RBN Aggregator.
+This is the conduit for uploading spots to the Reverse Beacon Network's servers.
+
 Download Pavel Demin's SD-card image zip-file for your Red Pitaya (125-14 or 122.88-16)
 and uncompress it into a folder. They can be found at:
 
