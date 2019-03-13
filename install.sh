@@ -2,7 +2,7 @@
 
 DIR=/media/mmcblk0p1/apps/sdr_transceiver_ft8
 
-chmod +x *.sh
+chmod +x *.sh radioday upload-to-rbn
 
 rw
 cp temp.sh ~

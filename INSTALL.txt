@@ -5,10 +5,8 @@ https://pavel-demin.github.io/stemlab-sdr-notes/sdr-transceiver-ft8/
 https://pavel-demin.github.io/red-pitaya-notes/sdr-transceiver-ft8/
 
 Copy the content of the folder to a clean FAT32-formatted SD card.
+Do not follow any other instructions on the web page.
 
-If you are not absolutely sure of what you are doing, do not modify the files on the SD card.
-Should you do it, make sure you use tools that do not enforce Windows/DOS file properties.
-E.g. notepad++ is safe to use. 
 
 SSH to the Red Pitaya. Default user name is "root", default password is "changeme".
 
@@ -20,11 +18,23 @@ Optionally - modify the welcome message to include the identity of the Red Pitay
 
 # nano /etc/motd
 
-Install perl
+Install git
 
-# rw
 # apk update
-# apk add perl
+# apk add git
+
+Fetch installation package
+
+# git clone https://github.com/bjornekelund/upload-ft8-to-rbn
+# cd upload-ft8-to-rbn
+
+Configure your skimmer. Add grid, call, antenna information etc. as required. 
+Exit the editor with Ctrl-S Ctrl-X. Open all the files and run the script 
+to the end. Do not exit the script with Ctrl-C. 
+
+# chmod +x *.sh
+# ./config.sh
+
 
 Go to the application folder and rename the default decode script
 
