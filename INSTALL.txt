@@ -72,12 +72,14 @@ you may find them on https://github.com/bjornekelund
 
 To deinstall the additions and return to only reporting spots to pskreporter, do:
 
+# /root/apps/stop.sh
 # cd ~/upload-ft8-to-rbn
 # ./deinstall.sh
 # reboot
 
 To update the additions to the latest version do:
 
+# /root/apps/stop.sh
 # cd ~/upload-ft8-to-rbn
 # git pull
 # ./install.sh
