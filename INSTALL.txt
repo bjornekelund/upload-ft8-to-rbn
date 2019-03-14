@@ -69,3 +69,18 @@ file appears. When you are done, hit ctrl-C and log off
 
 Should you want to understand/modify/build the radioday and upload-to-rbn utilities, 
 you may find them on https://github.com/bjornekelund
+
+To deinstall the additions and return to only reporting spots to pskreporter, do:
+
+# cd ~/upload-ft8-to-rbn
+# ./deinstall.sh
+# reboot
+
+To update the additions to the latest version do:
+
+# cd ~/upload-ft8-to-rbn
+# git pull
+# ./install.sh
+# ./config.sh
+# reboot
+
