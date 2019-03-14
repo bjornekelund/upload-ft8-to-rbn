@@ -37,9 +37,7 @@ Install the utilities for config cycling and RBN upload
 # ./install.sh
 
 Configure your skimmer. Add grid, call, antenna information (for pskreporter), 
-broadcast IP address, IP port, etc. as required. The broadcast IP address is 
-typically the IP address of your router/DHCP server with the last number replaced 
-by 255, such as 192.168.1.255. 
+broadcast IP port, etc. as required. 
 For twilight duration, empirical studies suggest two hours is a good number. 
 Should you live close to the equator you may want to use a shorter number, 
 such as 1.5. Setting it to zero disables the use of the twilight configuration 

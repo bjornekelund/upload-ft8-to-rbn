@@ -2,7 +2,6 @@
 
 # Station parameters
 GRID=
-BROADCASTIP=192.168.1.255
 UDPPORT=2238
 GRAYDURATION=2
 # End of station parameters
@@ -10,6 +9,7 @@ GRAYDURATION=2
 JOBS=4
 NICE=10
 
+BROADCASTIP=`ip a s dev eth0 | awk '/inet / {print $4}'`
 DIR=`readlink -f $0`
 DIR=`dirname $DIR`
 
