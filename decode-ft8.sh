@@ -27,7 +27,7 @@ test $DIR/$CONFIGD -ot $CONFIGD || cp $DIR/$CONFIGD $CONFIGD
 test $DIR/$CONFIGN -ot $CONFIGN || cp $DIR/$CONFIGN $CONFIGN
 test $DIR/$CONFIGG -ot $CONFIGG || cp $DIR/$CONFIGG $CONFIGG
 
-echo "Sleeping until full minute ..."
+echo "Sleeping ..."
 
 $SLEEP
 
@@ -37,13 +37,13 @@ date
 
 TIMESTAMP=`date --utc +'%y%m%d_%H%M'`
 
-echo "Recording using $SCONFIG ..."
+echo "Rec w $SCONFIG ..."
 
 killall -q $RECORDER
 
 $RECORDER $SCONFIG
 
-echo "Done recording. Decoding ..."
+echo "Decoding ..."
 
 for file in ft8_*_$TIMESTAMP.c2
 do
@@ -58,7 +58,7 @@ wait
 
 date
 
-echo "Done decoding. Uploading to RBN ..."
+echo "Uploading ..."
 #$DIR/upload-to-rbn.pl $CALL $GRID $HOSTIP $UDPPORT
 
 $DIR/upload-to-rbn $BROADCASTIP $UDPPORT decodes_$TIMESTAMP.txt
