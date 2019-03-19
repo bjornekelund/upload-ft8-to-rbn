@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # Station parameters
-GRID=
+GRID=JO65MR
 UDPPORT=2238
 GRAYDURATION=2
 # End of station parameters
@@ -21,29 +21,27 @@ SCONFIG=write-c2-files-`$DIR/radioday $GRID $GRAYDURATION`.cfg
 DECODER=$DIR/ft8d-master/ft8d
 SLEEP=$DIR/sleep-to-59
 
-#date
-
 test $DIR/$CONFIGD -ot $CONFIGD || cp $DIR/$CONFIGD $CONFIGD
 test $DIR/$CONFIGN -ot $CONFIGN || cp $DIR/$CONFIGN $CONFIGN
 test $DIR/$CONFIGG -ot $CONFIGG || cp $DIR/$CONFIGG $CONFIGG
 
-echo "Sleeping ..."
+#echo `date --utc +"%Y-%m-%d "` "Sleeping ..."
 
 $SLEEP
 
 sleep 1
 
-date
-
 TIMESTAMP=`date --utc +'%y%m%d_%H%M'`
 
-echo "Rec w $SCONFIG ..."
+#echo `date --utc +"%H:%M:%SZ"` "Rec w $SCONFIG ..."
+echo "Rec $SCONFIG"
 
 killall -q $RECORDER
 
 $RECORDER $SCONFIG
 
-echo "Decoding ..."
+#echo `date --utc +"%H:%M:%SZ"` "Decoding ..."
+echo "Dec"
 
 for file in ft8_*_$TIMESTAMP.c2
 do
@@ -56,10 +54,9 @@ done > decodes_$TIMESTAMP.txt
 
 wait
 
-date
+#echo `date --utc +"%Y-%m-%d %H:%M:%SZ"` "Uploading ..."
+echo "Upl:" `date --utc +"%h %d %H:%M:%SZ"`
 
-echo "Uploading ..."
-#$DIR/upload-to-rbn.pl $CALL $GRID $HOSTIP $UDPPORT
 
 $DIR/upload-to-rbn $BROADCASTIP $UDPPORT decodes_$TIMESTAMP.txt
 
