@@ -16,5 +16,7 @@ mount -o ro,remount /media/mmcblk0p1
 
 lbu commit -d
 
+sleep 1
+
 $DIR/start.sh
 
