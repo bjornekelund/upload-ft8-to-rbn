@@ -56,9 +56,7 @@ Run the script to the end. Do not exit with Ctrl-C.
 
 Start
 
-# reboot
-
-Wait for the orange LED to stop blinking, then SSH to the RP and check that we are in business
+Check that we are in business
 
 # tail -F /dev/shm/decode-ft8.log
 
@@ -72,17 +70,13 @@ you may find them on https://github.com/bjornekelund
 
 To deinstall the additions and return to only reporting spots to pskreporter, do:
 
-# /root/apps/stop.sh
 # cd ~/upload-ft8-to-rbn
 # ./deinstall.sh
-# reboot
 
 To update the additions to the latest version do:
 
-# /root/apps/stop.sh
 # cd ~/upload-ft8-to-rbn
 # git pull
 # ./install.sh
 # ./config.sh
-# reboot
 
