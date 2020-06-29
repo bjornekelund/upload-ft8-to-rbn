@@ -18,7 +18,9 @@ CONFIGD=write-c2-files-day.cfg
 CONFIGN=write-c2-files-night.cfg
 CONFIGG=write-c2-files-gray.cfg
 SCONFIG=write-c2-files-`$DIR/radioday $GRID $GRAYDURATION`.cfg
-DECODER=$DIR/ft8d-master/ft8d
+
+DECODER=/media/mmcblk0p1/apps/ft8d/ft8d
+
 SLEEP=$DIR/sleep-to-59
 
 test $DIR/$CONFIGD -ot $CONFIGD || cp $DIR/$CONFIGD $CONFIGD
@@ -55,8 +57,7 @@ done > decodes_$TIMESTAMP.txt
 wait
 
 #echo `date --utc +"%Y-%m-%d %H:%M:%SZ"` "Uploading ..."
-echo "Upl:" `date --utc +"%h %d %H:%M:%SZ"`
-
+echo "Upl:" `wc -l < decodes_$TIMESTAMP.txt` "@" `date --utc +"%h %d %H:%M:%SZ"`
 
 $DIR/upload-to-rbn $BROADCASTIP $UDPPORT decodes_$TIMESTAMP.txt
 
